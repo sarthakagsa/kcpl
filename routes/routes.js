@@ -3,15 +3,11 @@ var express = require("express");
 var router = express.Router();
 
 router.get("/",function(req,res){
-
-    console.log("KCPL");
     res.render("home");    
 });
 
-router.get("/vechilepaper",function(req,res){
+router.use("/vechilepaper",require("./vechilepaper"));
 
-    console.log("KCPL");
-    res.render("vechilepaper");    
-});
+router.use("/vechileparts",require("./vechileparts"));
 
 module.exports = router;
