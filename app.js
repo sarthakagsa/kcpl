@@ -1,9 +1,17 @@
 var express = require("express");
 var path = require("path");
+var mongoose = require("mongoose");
+var cookieParser = require("cookie-parser");
+var passport = require("passport");
+var session = require("express-session");
+var flash = require("connect-flash");
+var params = require("./params/params");
 
 //var routes = require("./routes");
 
 var app= express();
+
+mongoose.connect("params.DATABASECONNECTION", {useUnifiedTopology: true, useNewUrlParser : true, useCreateIndex: true});
 
 app.set("port",process.env.PORT || 3000);
 
