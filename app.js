@@ -6,17 +6,29 @@ var passport = require("passport");
 var session = require("express-session");
 var flash = require("connect-flash");
 var params = require("./params/params");
-
-//var routes = require("./routes");
+var setUpPassport = require("./setupPassport");
+var bodyParser= require("body-parser");
 
 var app= express();
 
-mongoose.connect("params.DATABASECONNECTION", {useUnifiedTopology: true, useNewUrlParser : true, useCreateIndex: true});
-
+mongoose.connect("mongodb+srv://sarthakagsa:'Sarthak@123'@cluster0-et4yq.gcp.mongodb.net/kcpl?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser : true, useCreateIndex: true});
+setUpPassport();
 app.set("port",process.env.PORT || 3000);
 
 app.set("views",path.join(__dirname,"views"));
 app.set("view engine","ejs");
+
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(cookieParser());
+app.use(session({
+    secret: "alskdjfhislhsdkjfhalusdf",
+    resave:false,
+    saveUninitialized:false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash);
 
 app.use("/",require("./routes/routes"));
 app.listen(app.get("port"),function() {
