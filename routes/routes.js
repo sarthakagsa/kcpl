@@ -18,7 +18,7 @@ router.get("/signup",function(req,res){
     res.render("signup");    
 });
 
-router.post("/signup",function(req,rest,next) {
+router.post("/signup",function(req,res,next) {
     var email = req.body.email;
     var password = req.body.password;
 
@@ -35,11 +35,12 @@ router.post("/signup",function(req,rest,next) {
             email:email,
             password:password
         });
+        console.log(newUser);
         newUser.save(next);
     });
 },   passport.authenticate("login",{
     successRedirect:"/",
-    failureRedirect : "/signup",
+    failureRedirect : "/login",
     failureFlash : true,
 })
 );

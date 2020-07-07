@@ -27,12 +27,12 @@ module.exports = function () {
             if (!user) {
                 return done(null,false,{message: "No user has that email"});
             }
-            user.checkPassword(password, function (err, idMatch) {
+            user.checkPassword(password, function (err, isMatch) {
                 if (err) {
                     return done(err);
                 }
                 if (isMatch) {
-                    return done(null,user);
+                    return done(null, user);
                 }
                 else{
                     return done(null,false,{message:"invalid password"});
