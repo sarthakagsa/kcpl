@@ -11,7 +11,8 @@ var bodyParser= require("body-parser");
 
 var app= express();
 
-mongoose.connect("mongodb+srv://sarthakagsa:'Sarthak@123'@cluster0-et4yq.gcp.mongodb.net/kcpl?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser : true, useCreateIndex: true});
+mongoose.connect("mongodb+srv://sarthakagsa:admin@kcpl-aunih.mongodb.net/<dbname>?retryWrites=true&w=majority", {useUnifiedTopology: true, useNewUrlParser : true, useCreateIndex: true});
+
 setUpPassport();
 app.set("port",process.env.PORT || 3000);
 
