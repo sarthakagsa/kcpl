@@ -4,15 +4,18 @@ var passport = require("passport");
 
 var User = require("../models/user");
 
+var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
+
 var router = express.Router();
 
 router.use(function(req,res, next){
     res.locals.currentUser = req.user;
-
+    res.locals.error = req.flash("error");
+    res.locals.info = req.flash("info");
     next();
 });
 
-router.get("/",function(req,res){
+router.get("/",ensureAuthenticated,function(req,res){
     res.render("home");    
 });
 
@@ -27,7 +30,7 @@ router.get("/logout", function(req, res){
 
 router.post("/login", passport.authenticate("login", {
     successRedirect: "/",
-    failureRedirect: "/signup",
+    failureRedirect: "/login",
     failureFlash: true
  }));
 
@@ -62,8 +65,8 @@ router.post("/signup", function (req, res, next) {
  }));
 
 
-router.use("/vechilepaper",require("./vechilepaper"));
+router.use("/vechilepaper",ensureAuthenticated,require("./vechilepaper"));
 
-router.use("/vechileparts",require("./vechileparts"));
+router.use("/vechileparts",ensureAuthenticated,require("./vechileparts"));
 
 module.exports = router;
