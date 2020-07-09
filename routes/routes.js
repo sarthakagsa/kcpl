@@ -4,6 +4,8 @@ var passport = require("passport");
 
 var User = require("../models/user");
 
+var vechilename = require("../models/vechilename");
+
 var ensureAuthenticated = require("../auth/auth").ensureAuthenticated;
 
 var router = express.Router();
@@ -63,6 +65,22 @@ router.post("/signup", function (req, res, next) {
     failureRedirect: "/signup",
     failureFlash: true
  }));
+
+ router.post("/vechilename",ensureAuthenticated,function(req,res) {
+
+    var newVechilename = new vechilename({
+        vechilename : req.body.vechilename,
+    });
+
+    newVechilename.save(function(err,vechilename) {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect("/");
+    });
+     
+ });
+
 
 
 router.use("/vechilepaper",ensureAuthenticated,require("./vechilepaper"));

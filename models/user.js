@@ -5,7 +5,31 @@ const SALT_FACTOR = 10;
 
 var userSchema = mongoose.Schema({
     email : {type:String, required:true, unique:true},
-    password : {type:String, required:false}
+    password : {type:String, required:false},
+
+    vechile : [{
+        vechilename : [{
+            
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"vechilename"
+        
+        }],
+        vechilepaper : [{
+                
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"vechilepaper"
+        
+        }],
+        vechilepaper : [{
+                
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"vechilepaper"
+    
+        }],
+    }],
+
+    
+
 });
 
 userSchema.pre("save",function(done) {

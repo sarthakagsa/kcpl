@@ -1,28 +1,18 @@
 <%- include ("_partial/_header.ejs"); %>
 
-<div class="container">
-    <div class="row" style="margin-top: 2%;">
-  <div class="col-sm-6">
-    <div class="card border-primary">
-      <div class="card-body">
-        <h5 class="card-title">Vechile Paper</h5>
-        <a href="/vechilepaper" class="btn btn-primary">GO!</a>
+<div class="table-responsive container " style="margin-top: 2%;">
+  <table id="myTable" class="display table table-bordered thead-dark" width="100%" >  
+          <thead>  
+            <tr>   
+              <th>Available Vechile</th> 
+            </tr>  
+          </thead>  
+          <tbody id="available-vechile">
+            <td><a href="#" class="badge badge-pill badge-light">WB 73 1568</a></td>
+            
+          </tbody>  
+        </table>  
       </div>
-    </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card border-primary">
-      <div class="card-body">
-        <h5 class="card-title">Vechile Parts</h5>
-        <a href="/vechileparts" class="btn btn-primary">GO!</a>
-      </div>
-    </div>
-  </div>
-</div>
-  </div>
-
- 
-
 
 
 <%- include ("_partial/_footer.ejs"); %>
