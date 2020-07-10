@@ -8,7 +8,11 @@
             </tr>  
           </thead>  
           <tbody id="available-vechile">
-            <td><a href="#" class="badge badge-pill badge-light">WB 73 1568</a></td>
+            <% users.forEach(function(u){%>
+
+              <td><a href="#" class="badge badge-pill badge-light"><%=u._id%></a></td>
+           <% }) %>
+            
             
           </tbody>  
         </table>  

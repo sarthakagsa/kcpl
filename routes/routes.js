@@ -18,7 +18,12 @@ router.use(function(req,res, next){
 });
 
 router.get("/",ensureAuthenticated,function(req,res){
-    res.render("home");    
+    User.find({_id:req.user._id}).exec(function (err,users) {
+        if (err) {
+            console.log(err);
+        }
+        res.render("home",{users:users});
+    });   
 });
 
 router.get("/login",function(req,res){
@@ -71,6 +76,9 @@ router.post("/signup", function (req, res, next) {
     var newVechilename = new vechilename({
         vechilename : req.body.vechilename,
     });
+
+    var userid = User.findOne({_id:req.user._id});
+    console.log(userid);
 
     newVechilename.save(function(err,vechilename) {
         if (err) {
