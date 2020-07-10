@@ -7,10 +7,11 @@
               <th>Available Vechile</th> 
             </tr>  
           </thead>  
+          <% vechilename.forEach(function(v){%>
           <tbody id="available-vechile">
-            <% users.forEach(function(u){%>
+            
 
-              <td><a href="#" class="badge badge-pill badge-light"><%=u._id%></a></td>
+              <td><a href="#" class="badge badge-pill badge-light"><%=v.vechilename%></a></td>
            <% }) %>
             
             

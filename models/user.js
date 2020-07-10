@@ -6,12 +6,6 @@ const SALT_FACTOR = 10;
 var userSchema = mongoose.Schema({
     email : {type:String, required:true, unique:true},
     password : {type:String, required:false},
-        vechilename : [{
-            
-            type:mongoose.Schema.Types.ObjectId,
-            ref:"vechilename"
-        
-        }]
 
     
 

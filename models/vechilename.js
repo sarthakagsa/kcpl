@@ -8,18 +8,7 @@ const VechileSchema = new Schema({
         type : String,
         required : true
     },
-      
-    vechilepaper : [{
-            
-                type:mongoose.Schema.Types.ObjectId,
-                ref:"vechilepaper"
-            
-    }],
-    vechileparts : [{
-            
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"vechileparts"
-    }], 
+    userID:{type:mongoose.Schema.Types.ObjectId, required:false, unique:false} 
 });
 
 const VechileModel = mongoose.model('vechile',VechileSchema); 

@@ -17,14 +17,13 @@ router.use(function(req,res, next){
     next();
 });
 
-router.get("/",ensureAuthenticated,function(req,res){
-    User.find({_id:req.user._id}).exec(function (err,users) {
-        if (err) {
-            console.log(err);
-        }
-        res.render("home",{users:users});
-    });   
-});
+router.get("/", function(req, res){
+    vechilename.find({userID:req.user._id}).exec(function(err, vechilename){
+        if(err){console.log(err);}
+
+        res.render("home", {vechilename:vechilename});
+    });
+ });
 
 router.get("/login",function(req,res){
     res.render("login");    
@@ -74,11 +73,9 @@ router.post("/signup", function (req, res, next) {
  router.post("/vechilename",ensureAuthenticated,function(req,res) {
 
     var newVechilename = new vechilename({
-        vechilename : req.body.vechilename,
+        vechilename : req.body.vechilename ,
+        userID : req.user._id
     });
-
-    var userid = User.findOne({_id:req.user._id});
-    console.log(userid);
 
     newVechilename.save(function(err,vechilename) {
         if (err) {
